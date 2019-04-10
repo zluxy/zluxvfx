@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Страница не найдена</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css" id="bootstrap.css">
+    <script src="/document.min.js" id="DOC" editable="false"></script>
+    <script src="/github.js"></script>
+    <style>#default404{display:none;}</style>
+    <noscript><style>#default404{display:block;}</style></noscript>
+    <script type="text/javascript">
+        
+        // Step 1. Location in mw repository folder, load 404.js + user.js
+        var docs_repositories = ['/docs-ru/'],
+        // Step 2. Default routing rules
+        routing = [/^\/docs-ru$/, '/docs-ru/'];
+            
+        var hit, pathname = window.location.pathname;
+        for(var i = 0, c = docs_repositories.length; i < c; i++) {
+            var repo_path = docs_repositories[i];
+            if (pathname.substr(0, repo_path.length) === repo_path) {
+                $DOC.appendScript(repo_path + '404.js');
+                $DOC.appendScript(repo_path + 'user.js');
+                hit = true;
+            }
+        }
+        if (!hit) {
+            $DOC.appendCSS('#default404{display:block;}');
+            for(var i = 0, c = routing.length; i < c; i+=2) {
+                if (routing[i].test(pathname)) {
+                    window.location = routing[i + 1];
+                    hit = true;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="default404" style="margin:64px; margin-top:32px;">
+        <h1 style="margin-bottom:20px;">404: Страница не найдена</h1>
+    </div>
+    <!--fixed-top-bar-->
+    <!--!header-panel-->
+    <!--content-panel-->
+    <!--right-side-panel -->
+    <!--footer-panel-->
+</body>
+</html>
+
